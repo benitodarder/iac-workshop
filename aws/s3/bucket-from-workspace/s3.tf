@@ -1,0 +1,43 @@
+data "template_file" "s3_policy_only_ssl_transport" {
+  template = file("${path.module}/assets/s3_policy_only_ssl_transport.json")
+
+  vars = {
+    bucket_name = "${local.settings.service_name}-${local.settings.service_resource}-${local.settings.environment}-${local.settings.purpose}"
+  }
+}
+
+module "s3_bucket" {
+  source  = "terraform-aws-modules/s3-bucket/aws"
+  version = "~> 2"
+
+  bucket = "${local.settings.service_name}-${local.settings.service_resource}-${local.settings.environment}-${local.settings.purpose}"
+
+  versioning = {
+    enabled = true
+  }
+
+  block_public_acls       = true
+  block_public_policy     = true
+  ignore_public_acls      = true
+  restrict_public_buckets = true
+
+  force_destroy = true
+
+  server_side_encryption_configuration = {
+    rule = {
+      apply_server_side_encryption_by_default = {
+        sse_algorithm = "AES256"
+      }
+    }
+  }
+
+  attach_policy = true
+
+  policy = data.template_file.s3_policy_only_ssl_transport.rendered
+
+  control_object_ownership = true
+  object_ownership         = "BucketOwnerEnforced"
+
+  tags = local.settings.tags
+
+}

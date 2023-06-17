@@ -1,0 +1,27 @@
+## Environment Common ##
+account_id: "<Account ID>"
+business_unit: "<Business unit>"
+environment: "<Environment: dev, trunk, master, prod...>"
+purpose: "<Purpose: service name, use...>"
+region: "<Region>"
+service_name: "<Service name: rds, s3, dynamodb, vpc...>"
+service_resource: "<Service resource: db, bucket, sg...>"
+vpc_id: "<Public VPC>" 
+
+## Tags ##
+tags: 
+  business_unit: "<Business unit>"
+  environment: "<Environment: dev, trunk, master, prod...>"
+  purpose: "<Purpose: service name, use...>"
+  service_name: "<Service name: rds, s3, dynamodb, vpc...>"
+  service_resource: "<Service resource: db, bucket, sg...>"
+  
+## Environment ##
+inbound_cidrs: 
+  - "<One CIDR>"
+  - "<Another CIDR>"
+public: true
+skip_final_snapshot: true
+subnet_group: "<Subnet grup>"
+tcp_port: <Exposed TCP port>
+
