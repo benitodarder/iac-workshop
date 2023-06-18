@@ -26,11 +26,15 @@ In order to build infrastructure using workspace files, where a mean of finding 
 
 Sample excerpt to select the corresponding configuration file fronm the workspace name:
 
-> locals { &nbsp;
->  workspace_path        = "./workspaces/${terraform.workspace}/configuration.yaml" &nbsp;
->  workspace             = file(local.workspace_path) &nbsp;
->  settings              = yamldecode(local.workspace) &nbsp;
->} &nbsp;
+> locals {
+>
+>  workspace_path        = "./workspaces/${terraform.workspace}/configuration.yaml"
+>
+>  workspace             = file(local.workspace_path)
+>
+>  settings              = yamldecode(local.workspace)
+>
+>}
 
 to later access the properties use:
 
