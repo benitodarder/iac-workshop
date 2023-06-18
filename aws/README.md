@@ -10,12 +10,16 @@ Simple AWS IAC recipes... Probably of questionable utility...
   -  bucket-backendless
   -  bucket-from-config-file
   -  bucket-from-workspace
+
+### Building from configuration files.
   
 In order to build infrastructure using configuration files:
 
 + terraform init -backend-config=&lt;Backend definition file&gt; -upgrade -reconfigure
 + terraform plan -var-file=&lt;Configuration file&gt;
 + terraform apply -var-file=&lt;Configuration file&gt;
+
+### Building from workspace.
 
 In order to build infrastructure using workspace files, where a mean of finding the configuration files based on the current workspace has been defined:
 
