@@ -13,13 +13,13 @@ Simple AWS IAC recipes... Probably of questionable utility...
   
 In order to build infrastructure using configuration files:
 
-+ terraform init -backend-config=&lt;Backend file&gt; -upgrade -reconfigure
++ terraform init -backend-config=&lt;Backend definition file&gt; -upgrade -reconfigure
 + terraform plan -var-file=&lt;Configuration file&gt;
 + terraform apply -var-file=&lt;Configuration file&gt;
 
 In order to build infrastructure using workspace files, where a mean of finding the configuration files based on the current workspace has been defined:
 
-+ terraform init -backend-config=&lt;Config folder&gt;/backend.tfvars -upgrade -reconfigure
++ terraform init -backend-config=&lt;Backend definition file&gt; -upgrade -reconfigure
 + terraform workspace select &lt;Workspace&gt;
 + terraform plan
 + terrafrom apply
