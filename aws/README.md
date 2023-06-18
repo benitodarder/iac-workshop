@@ -13,27 +13,27 @@ Simple AWS IAC recipes... Probably of questionable utility...
   
 In order to build infrastructure using configuration files:
 
-+ terraform init -backend-config=<Backend file> -upgrade -reconfigure
-+ terraform plan -var-file=<Configuration file>
-+ terraform apply -var-file=<Configuration file>
++ terraform init -backend-config=&lt;Backend file&gt; -upgrade -reconfigure
++ terraform plan -var-file=&lt;Configuration file&gt;
++ terraform apply -var-file=&lt;Configuration file&gt;
 
 In order to build infrastructure using workspace files, where a mean of finding the configuration files based on the current workspace has been defined:
 
-+ terraform init -backend-config=<Config folder>/backend.tfvars -upgrade -reconfigure
-+ terraform workspace select <Workspace>
++ terraform init -backend-config=&lt;Config folder&gt;/backend.tfvars -upgrade -reconfigure
++ terraform workspace select &lt;Workspace&gt;
 + terraform plan
 + terrafrom apply
 
 Sample excerpt to select the corresponding configuration file fronm the workspace name:
 
-> locals {
->  workspace_path        = "./workspaces/${terraform.workspace}/configuration.yaml"
->  workspace             = file(local.workspace_path)
->  settings              = yamldecode(local.workspace)
->}
+&gt; locals {
+&gt;  workspace_path        = "./workspaces/${terraform.workspace}/configuration.yaml"
+&gt;  workspace             = file(local.workspace_path)
+&gt;  settings              = yamldecode(local.workspace)
+&gt;}
 
 to later access the properties use:
 
-> local.settings.<Property name>
+&gt; local.settings.&lt;Property name&gt;
 
 
