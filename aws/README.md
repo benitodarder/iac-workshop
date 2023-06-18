@@ -24,7 +24,7 @@ In order to build infrastructure using workspace files, where a mean of finding 
 + terraform plan
 + terrafrom apply
 
-Sample excerpt to select the corresponding configuration file fronm the workspace name:
+Sample excerpt to select the corresponding configuration file from the workspace name:
 
 > locals {
 >
