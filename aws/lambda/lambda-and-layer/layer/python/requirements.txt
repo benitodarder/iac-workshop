@@ -1,1 +1,1 @@
-python-dummy
+requests

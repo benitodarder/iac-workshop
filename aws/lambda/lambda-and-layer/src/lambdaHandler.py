@@ -1,9 +1,9 @@
-import dummy
+import requests
 import sys 
 
 def lambda_handler(event, context):
   print("Hello... Let's check layer presence...")
-  print(dir(dummy))
+  print(dir(requests))
   print("That's all folks... Bye...")
 
 if __name__ == '__main__':
