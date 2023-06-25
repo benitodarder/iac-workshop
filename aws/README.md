@@ -2,6 +2,8 @@
 
 Simple AWS IAC recipes... Probably of questionable utility...
 
+* lambda
+  - lambda-and-layer shows how to add packages to a lambda using layers
 * rds
   -  public-rds-credentials-from-secret : Not quite a bright idea expose an RDS to internet...
 * s3
