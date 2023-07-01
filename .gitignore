@@ -2,5 +2,6 @@ terraform*
 .terraform*
 **/config/beniaws*
 **/workspaces/beniaws*
-aws/lambda/**/builds/
-aws/lambda/**/layer/**/
+aws/lambda/**/builds/*
+aws/lambda/**/python/**/*
+!aws/lambda/**/requirements.txt
