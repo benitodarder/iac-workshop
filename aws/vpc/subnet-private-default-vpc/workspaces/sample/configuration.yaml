@@ -1,0 +1,15 @@
+## Environment Common ##
+cidr_block: <Base CIDR block>
+cidrsubnet_newbits: <Bits to add to CIDR for resulting subnet>
+vpc_id: <Base VPC>
+
+
+## Tags ##
+tags_common: 
+  account_id: <Account id.>
+  environment: <development, production, laboratory...>
+  business_unit: <Responsible dept.>
+  service_name: <AWS service name: lambda, ec2, vpc...>
+  service_resource: <AWS service resource: bucket, instance, ami...>
+  purpose: <Intended use>
+  region: <Region>

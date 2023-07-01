@@ -15,5 +15,5 @@ terraform {
 }
 
 provider "aws" {
-  region = local.settings.region
+  region = local.settings.tags_common.region
 }

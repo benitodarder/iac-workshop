@@ -10,7 +10,7 @@ module "hello_world_layer" {
   source  = "terraform-aws-modules/lambda/aws"
   version = "~> 3.3.1"
 
-  layer_name               = "${local.settings.service_name}-layer-${local.settings.environment}-${local.settings.purpose}"
+  layer_name               = "${local.settings.tags_common.service_name}-layer-${local.settings.tags_common.environment}-${local.settings.tags_common.purpose}"
   description              = "Lambda function to check layer."
   handler                  = "lambdaHandler.lambda_handler"
   compatible_runtimes      = ["python3.10"]
@@ -20,7 +20,7 @@ module "hello_world_layer" {
 
   create_layer = true
 
-  tags = local.settings.tags
+  tags = local.settings.tags_common
 
   source_path = "${local.settings.layer_folder}/"
 
