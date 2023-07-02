@@ -1,0 +1,31 @@
+## Environment ##
+ami_owners: 
+  - <AMI owner>
+ami_filters:
+  - <AMI filter selector pattern 01>
+  - ..
+  - <AMI filter selector pattern n>
+ami_filter_by: <AMI selector criteria>
+inbound_ssh_cidrs: 
+  - <CIDR with SSH access 01>
+  - ...
+  - <CIDR with SSH access n>
+instance_name: <Instance name>
+instance_type: <Instance type, must be compatible with AMI type>
+key_pair_name: <SSH Key, public>
+subnet_id_private: <Private subnet where the instance is located>
+subnet_id_public:
+  - <Public subnet 01...ALB external facade>
+  - ...
+  - <Public subnet n .. ALB external facade>
+vpc_id: <VPC hosting the instance> 
+
+## Tags ##
+tags_common:
+  account_id: <Account id.>
+  environment: <development, production, laboratory...>
+  business_unit: <Responsible dept.>
+  service_name: <AWS service name: lambda, ec2, vpc...>
+  service_resource: <AWS service resource: bucket, instance, ami...>
+  purpose: <Intended use>
+  region: <Region>

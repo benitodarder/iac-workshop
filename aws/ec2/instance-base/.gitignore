@@ -1,0 +1,4 @@
+bak
+.terraform
+*.bak
+*.out
