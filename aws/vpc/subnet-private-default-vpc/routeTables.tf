@@ -1,10 +1,10 @@
-resource "aws_route_table" "private" {
+resource "aws_route_table" "to_public_nat" {
 
 
-  vpc_id = local.settings.vpc_id
+  vpc_id = aws_default_vpc.this.id
   route {
     cidr_block     = "0.0.0.0/0"
-    nat_gateway_id = aws_nat_gateway.private.id
+    nat_gateway_id = aws_nat_gateway.public.id
   }
   tags = merge(
     local.settings.tags_common,
@@ -15,8 +15,8 @@ resource "aws_route_table" "private" {
   )
 }
 
-resource "aws_route_table_association" "main_private" {
+resource "aws_route_table_association" "to_public_nat" {
 
   subnet_id      = aws_subnet.private.id
-  route_table_id = aws_route_table.private.id
+  route_table_id = aws_route_table.to_public_nat.id
 }
