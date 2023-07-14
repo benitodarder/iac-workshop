@@ -14,7 +14,7 @@ module "iam_role_ec2" {
   create_role             = true
   create_instance_profile = true
 
-  role_name         = "${local.settings.tags_common.service_name}-${local.settings.tags_common.service_resource}-${local.settings.tags_common.environment}-${local.settings.instance_name}"
+  role_name         = "${local.settings.tags_common.service_name}-${local.settings.tags_common.service_resource}-${local.settings.tags_common.environment}-${local.settings.tags_common.purpose}-${lower(random_id.detail.hex)}"
   role_requires_mfa = false
   custom_role_policy_arns = [
     "arn:aws:iam::aws:policy/service-role/AmazonEC2RoleforSSM",
@@ -30,9 +30,8 @@ module "iam_role_ec2" {
 
   tags = merge(
     local.settings.tags_common,
-    local.settings.tags_common,
     {
-      "Name" = "${local.settings.tags_common.service_name}-${local.settings.tags_common.service_resource}-${local.settings.tags_common.environment}-${local.settings.instance_name}"
+      "Name" = "${local.settings.tags_common.service_name}-${local.settings.tags_common.service_resource}-${local.settings.tags_common.environment}-${local.settings.tags_common.purpose}-${lower(random_id.detail.hex)}"
     }
   )
 }

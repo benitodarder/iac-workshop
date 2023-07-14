@@ -6,14 +6,19 @@ ami_filters:
   - ..
   - <AMI filter selector pattern n>
 ami_filter_by: <AMI selector criteria>
-inbound_ssh_cidrs: 
-  - <CIDR with SSH access 01>
-  - ...
-  - <CIDR with SSH access n>
-instance_name: <Instance name>
+cloud_init_file_path: <cloud-init file template path>
 instance_type: <Instance type, must be compatible with AMI type>
 key_pair_name: <SSH Key, public>
-subnet_id_private: <Private subnet where the instance is located>
+listening_ports_protocols: 
+  - port: <Port>
+    protocol: <Protocol>
+    inbound_cidrs: 
+      - <CIDR with SSH access 01>
+      - ...
+      - <CIDR with SSH access n>
+subnet_filter_criteria: <Subnet filter criteria>
+subnet_filter_values:
+  - <Subnet filter values, 0>
 subnet_id_public:
   - <Public subnet 01...ALB external facade>
   - ...

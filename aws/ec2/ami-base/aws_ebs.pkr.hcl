@@ -7,7 +7,7 @@ source "amazon-ebs" "ami" {
 
   user_data = base64encode(
     templatefile(
-      "./assets/cloud-init.yaml.tpl",
+      var.cloud_init_path,
       {
         region = var.region
       }
@@ -42,5 +42,14 @@ build {
   sources = [
     "source.amazon-ebs.ami"
   ]
+
+  provisioner "shell" {
+    inline = [
+      #"sudo tail -f /var/log/cloud-init-output.log",
+      "sudo /usr/bin/cloud-init status --wait",
+    ]
+
+    execute_command = "{{ .Vars }} bash {{ .Path }}"
+  }
 
 }

@@ -33,3 +33,4 @@ runcmd:
   ## Services
   - [/usr/bin/systemctl, restart, sshd]
   - [/usr/bin/systemctl, daemon-reload]
+  - touch /root/packerWasHere

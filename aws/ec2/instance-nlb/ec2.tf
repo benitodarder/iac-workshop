@@ -1,24 +1,5 @@
-data "aws_iam_instance_profile" "instance_base" {
-  name = "${local.settings.tags_common.service_name}-${local.settings.tags_common.service_resource}-${local.settings.tags_common.environment}-${local.settings.instance_name}"
-
-  depends_on = [
-    module.iam_role_ec2
-  ]
-}
-
-data "aws_ami" "ec2_ami_base" {
-  most_recent = true
-  owners      = local.settings.ami_owners
-
-  filter {
-    name = local.settings.ami_filter_by
-
-    values = local.settings.ami_filters
-  }
-}
-
 data "template_file" "cloudinit_provisioner" {
-  template = file("./assets/cloud-init.yaml.tpl")
+  template = file(local.settings.cloud_init_file_path)
 
   vars = {
     region = local.settings.tags_common.region
@@ -29,14 +10,14 @@ module "ec2-instance-base" {
   source  = "terraform-aws-modules/ec2-instance/aws"
   version = "~> 2"
 
-  name = local.settings.instance_name
+  name = "${local.settings.tags_common.service_name}-${local.settings.tags_common.service_resource}-${local.settings.tags_common.environment}-${local.settings.tags_common.purpose}-${lower(random_id.detail.hex)}"
 
-  ami                    = data.aws_ami.ec2_ami_base.id
+  ami                    = random_id.detail.keepers.ami_id
   instance_type          = local.settings.instance_type
   monitoring             = true
   vpc_security_group_ids = [aws_security_group.base.id]
-  subnet_id              = local.settings.subnet_id_private
-  iam_instance_profile   = data.aws_iam_instance_profile.instance_base.name
+  subnet_id              = data.aws_subnets.filter.ids[0]
+  iam_instance_profile   = module.iam_role_ec2.iam_role_name
   key_name               = local.settings.key_pair_name
 
   root_block_device = [
@@ -61,9 +42,8 @@ module "ec2-instance-base" {
 
   tags = merge(
     local.settings.tags_common,
-    local.settings.tags_common,
     {
-      "Name" = "${local.settings.instance_name}"
+      "Name" = "${local.settings.tags_common.service_name}-${local.settings.tags_common.service_resource}-${local.settings.tags_common.environment}-${local.settings.tags_common.purpose}-${lower(random_id.detail.hex)}"
     }
   )
 

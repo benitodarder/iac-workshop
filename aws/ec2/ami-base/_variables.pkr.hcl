@@ -17,6 +17,9 @@ variable "tags" {
 variable "ami_name_prefix" {
   type = string
 }
+variable "cloud_init_path" {
+  type = string
+}
 variable "instance_type" {
   type    = string
   default = "t3a.small"
