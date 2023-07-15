@@ -1,0 +1,70 @@
+## Environment ##
+ami_owners: 
+  - <AMI owner>
+ami_filters:
+  - <AMI filter selector pattern 01>
+  - ..
+  - <AMI filter selector pattern n>
+ami_filter_by: <AMI selector criteria>
+cloud_init_file_path: <cloud-init file template path>
+healthcheck_healthy_threshold: <ELB healthcheck threshold: healthy>
+healthcheck_unhealthy_threshold: <ELB healthcheck threshold: unhealthy>
+healthcheck_timeout: <ELB healthcheck timeot>
+healthcheck_target: <ELB healthcheck protocol and port>
+healthcheck_interval: <ELB healthcheck interval>
+instance_type: <Instance type, must be compatible with AMI type>
+key_pair_name: <SSH Key, public>
+listening_ports_protocols: 
+  - instance_port: <Instance port 0>
+    protocol: <Instance open protocol 0>
+    lb_port: <Instance ELB port 0>
+    inbound_cidrs_instance: 
+      - <Instance open CIDR 0>
+      ...
+      - <Instance open CIDR N>
+    inbound_cidrs_elb: 
+      - <ELB open CIDR 0>
+      ...
+      - <ELB open CIDR N>  
+  ...
+  - instance_port: <Instance port N>
+    protocol: <Instance open protocol N>
+    lb_port: <Instance ELB port N>
+    inbound_cidrs_instance: 
+      - <Instance open CIDR 0>
+      ...
+      - <Instance open CIDR N>
+    inbound_cidrs_elb: 
+      - <ELB open CIDR 0>
+      ...
+      - <ELB open CIDR N>  
+subnet_filter_criteria: <Subnet filter criteria>
+subnet_filter_values:
+  - <Subnet filter values, 0>
+subnet_id_public:
+  - <Public subnet 01...ALB external facade>
+  - ...
+  - <Public subnet n .. ALB external facade>
+vpc_id: <VPC hosting the instance>
+
+
+
+
+listening_ports_protocols: 
+  - port: <Port>
+    protocol: <Protocol>
+    inbound_cidrs: 
+      - <CIDR with SSH access 01>
+      - ...
+      - <CIDR with SSH access n>
+ 
+
+## Tags ##
+tags_common:
+  account_id: <Account id.>
+  environment: <development, production, laboratory...>
+  business_unit: <Responsible dept.>
+  service_name: <AWS service name: lambda, ec2, vpc...>
+  service_resource: <AWS service resource: bucket, instance, ami...>
+  purpose: <Intended use>
+  region: <Region>
