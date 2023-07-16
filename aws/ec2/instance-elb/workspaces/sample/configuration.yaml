@@ -47,18 +47,6 @@ subnet_id_public:
   - <Public subnet n .. ALB external facade>
 vpc_id: <VPC hosting the instance>
 
-
-
-
-listening_ports_protocols: 
-  - port: <Port>
-    protocol: <Protocol>
-    inbound_cidrs: 
-      - <CIDR with SSH access 01>
-      - ...
-      - <CIDR with SSH access n>
- 
-
 ## Tags ##
 tags_common:
   account_id: <Account id.>

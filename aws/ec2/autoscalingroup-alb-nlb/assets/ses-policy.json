@@ -1,0 +1,15 @@
+{
+    "Id": "SESPOLICYEC2",
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Sid": "AuthorizeMarketer",
+            "Effect": "Allow",
+            "Resource": "*",
+            "Action": [
+                "SES:SendEmail",
+                "SES:SendRawEmail"
+            ]
+        }
+    ]
+}

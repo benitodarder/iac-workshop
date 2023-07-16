@@ -1,0 +1,19 @@
+{
+    "Statement": [
+        {
+            "Action": [
+                "s3:List*",
+                "s3:Get*",
+                "s3:Put*",
+                "s3:Delete*"
+            ],
+            "Effect": "Allow",
+            "Resource": [
+                "arn:aws:s3:::*/*",
+                "arn:aws:s3:::*"
+            ],
+            "Sid": "POLICYCEDS3"
+        }
+    ],
+    "Version": "2012-10-17"
+}
