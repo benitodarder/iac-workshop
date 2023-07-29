@@ -1,6 +1,6 @@
 resource "random_id" "detail" {
   keepers = {
-    vpc_id = local.settings.vpc_id
+    cidr_block = local.settings.cidr_block
   }
 
   byte_length = 2

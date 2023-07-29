@@ -1,7 +1,7 @@
 ## Environment Common ##
 cidr_block: <Base CIDR block>
 cidrsubnet_newbits: <Bits to add to CIDR for resulting subnet>
-vpc_id: <Base VPC>
+public_subnet: <Public subnet for Internet connectivity>
 
 
 ## Tags ##
