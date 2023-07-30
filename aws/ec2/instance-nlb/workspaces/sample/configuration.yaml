@@ -5,18 +5,18 @@ ami_filters:
   - <AMI filter selector pattern 01>
   - ..
   - <AMI filter selector pattern n>
-ami_filter_by: <AMI selector criteria>
+ami_filter_by: <AMI selector criteria: name, root-device-type, virtualization-type...>
 cloud_init_file_path: <cloud-init file template path>
 instance_type: <Instance type, must be compatible with AMI type>
 key_pair_name: <SSH Key, public>
 listening_ports_protocols: 
   - port: <Port>
-    protocol: <Protocol>
+    protocol: <Protocol: UDP, TCP, TCP_UDP, HTTP, HTTPS, TLS>
     inbound_cidrs: 
       - <CIDR with SSH access 01>
       - ...
       - <CIDR with SSH access n>
-subnet_filter_criteria: <Subnet filter criteria>
+subnet_filter_criteria: <Subnet filter criteria: tag:Name, id, ...  >
 subnet_filter_values:
   - <Subnet filter values, 0>
 subnet_id_public:
