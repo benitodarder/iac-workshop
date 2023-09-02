@@ -1,4 +1,37 @@
 ## Environment ##
+alb_listeners: # Application load balancer listeners
+  - port: # Port
+    protocol: HTTP
+    actions:
+      - type: # Action: redirect, fixed-response... 
+        redirect: # Optional, redirect configuration
+          - port: # Destination port
+            protocol: # Protocol
+            status_code: # Redirect status code, usually HTTP 301
+        fixed_response: # Optional
+          - content_type: # Content type
+            message_body: # Message body
+            status_code: # HTTP status code
+    inbound_cidrs: # Allowed inbound CIDR's 
+      - # CIDR 01
+    sg_protocol: # Protocol
+    certificate_arn: # Optional certificate ARN
+    ssl_policy: # SSL policy, see AWS.   
+alb_listener_rules:
+  - priority: # Priority
+    listener_index: # Listener associated, from 0
+    actions_forward_to_target_group:
+      - type: # Action
+        target_group_index: # Target group index, from 0
+    conditions_by_path:
+      - paths:
+        - # Valid path
+alb_subnets:# Subnet id's where to place this NLB
+  - # Subnet 0108 
+alb_target_groups:
+  - port: # Port
+    tg_protocol: # Target group protocol
+    sg_protocol: # Security group protocol
 ami_owners: # List of allowed AMI Owners
   - #AMI owner 01
 ami_filters:

@@ -27,7 +27,16 @@ resource "aws_security_group" "instance" {
     }
   }
 
-
+  dynamic "ingress" {
+    for_each = { for index, record in local.settings.alb_target_groups : index => record }
+    content {
+      from_port       = ingress.value.port
+      to_port         = ingress.value.port
+      protocol        = ingress.value.sg_protocol
+      security_groups = [aws_security_group.alb.id]
+      description     = lookup(ingress.value, "description", "")
+    }
+  }
 
   egress {
     from_port   = 0
