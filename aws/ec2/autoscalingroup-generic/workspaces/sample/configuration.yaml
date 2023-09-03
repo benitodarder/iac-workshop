@@ -1,0 +1,87 @@
+## Environment ##
+alb_listeners: # Application load balancer listeners
+  - port: # Port
+    protocol: HTTP
+    actions:
+      - type: # Action: redirect, fixed-response... 
+        redirect: # Optional, redirect configuration
+          - port: # Destination port
+            protocol: # Protocol
+            status_code: # Redirect status code, usually HTTP 301
+        fixed_response: # Optional
+          - content_type: # Content type
+            message_body: # Message body
+            status_code: # HTTP status code
+    inbound_cidrs: # Allowed inbound CIDR's 
+      - # CIDR 01
+    sg_protocol: # Protocol
+    certificate_arn: # Optional certificate ARN
+    ssl_policy: # SSL policy, see AWS.   
+alb_listener_rules:
+  - priority: # Priority
+    listener_index: # Listener associated, from 0
+    actions_forward_to_target_group:
+      - type: # Action
+        target_group_index: # Target group index, from 0
+    conditions_by_path:
+      - paths:
+        - # Valid path
+alb_subnets:# Subnet id's where to place this NLB
+  - # Subnet 0108 
+alb_target_groups:
+  - port: # Port
+    tg_protocol: # Target group protocol
+    sg_protocol: # Security group protocol
+ami_owners: # List of allowed AMI Owners
+  - #AMI owner 01
+ami_filters:
+  - #AMI filter selector pattern 01
+  - ..
+  - #AMI filter selector pattern n
+ami_filter_by: #AMI selector criteria: name, root-device-type, virtualization-type...
+asg_min_size: <ASG min. size>
+asg_max_size: <ASG max. size>
+asg_desired_capacity: <ASG desired capacity>
+asg_wait_for_capacity_timeout: <ASG wait>
+cloud_init_file_path:  #cloud-init file template path
+ebs_volume_size: <EBS volume size>
+ebs_volume_type: <EBS volume type>
+instance_security_groups: # Instance security group.
+  - from_port: # From port
+    to_port: # To port
+    protocol: # Protocol
+    inbound_cidrs: # Optional allowed CIDR's list
+      - # Cidr 01
+    security_groups: # Optional allowed security groups list
+      - # Security group 01    
+    prefix_list_ids: # Optional allowed prefix list_ids list
+      - # Prefix lixt 01 
+    description: # Optional description messasge
+instance_type: #Instance type, must be compatible with AMI type
+key_pair_name: #SSH Key, public
+nlb_configurations: # Optional NLB listening forwarding ports
+  - port: # Port
+    protocol: # Protocol
+    inbound_cidrs: # Optional allowed CIDR's list
+      - # Cidr 01
+    target_group_index: # Forward to this target group
+nlb_subnets: # Subnet id's where to place this NLB
+  - # Subnet 01
+nlb_target_groups: # NLB related target groups.
+  - port: # Port
+    tg_protocol: # Protocol
+    sg_protocol: # Security group protocol
+subnet_filter_criteria: #Subnet filter criteria: tag:Name, id, ...  
+subnet_filter_values:
+  - #Subnet filter values, 0
+vpc_id: #VPC hosting the instance 
+
+## Tags ##
+tags_common:
+  account_id: #Account id.
+  environment: #development, production, laboratory...
+  business_unit: #Responsible dept.
+  service_name: #AWS service name: lambda, ec2, vpc...
+  service_resource: #AWS service resource: bucket, instance, ami...
+  purpose: #Intended use
+  region: #Region
