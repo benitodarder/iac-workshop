@@ -4,12 +4,12 @@ Simple AWS IAC recipes... Probably of questionable utility...
 
 * ec2
   - ami-base
-  - autoscalingroup-alb-nlb
+  - autoscalingroup-generic
     + Autoscaling group with an ALB for service and a NLB for maintenance
   - instance-elb
     + Public instance on a private subnet exposed through a classic load balancer
-  - instance-nlb
-    + Public instance on a private subnet exposed through a network load balancer
+  - instance-generic
+    + Public instance on a private subnet exposed through a network load balancer, or using an application load balancer
 * lambda
   - lambda-and-layer shows how to add packages to a lambda using layers
 * rds

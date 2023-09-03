@@ -39,13 +39,13 @@ ami_filters:
   - ..
   - #AMI filter selector pattern n
 ami_filter_by: #AMI selector criteria: name, root-device-type, virtualization-type...
-asg_min_size: <ASG min. size>
-asg_max_size: <ASG max. size>
-asg_desired_capacity: <ASG desired capacity>
-asg_wait_for_capacity_timeout: <ASG wait>
+asg_min_size: #ASG min. size
+asg_max_size: #ASG max. size
+asg_desired_capacity: #ASG desired capacity
+asg_wait_for_capacity_timeout: #ASG wait
 cloud_init_file_path:  #cloud-init file template path
-ebs_volume_size: <EBS volume size>
-ebs_volume_type: <EBS volume type>
+ebs_volume_size: #EBS volume size
+ebs_volume_type: #EBS volume type
 instance_security_groups: # Instance security group.
   - from_port: # From port
     to_port: # To port
