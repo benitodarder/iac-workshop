@@ -17,6 +17,8 @@ resource "aws_route_table" "to_public_nat" {
 
 resource "aws_route_table_association" "to_public_nat" {
 
-  subnet_id      = aws_subnet.private.id
+  count = length(local.settings.subnets)
+
+  subnet_id      = aws_subnet.this[count.index].id
   route_table_id = aws_route_table.to_public_nat.id
 }
