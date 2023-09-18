@@ -1,6 +1,6 @@
 resource "aws_lb_target_group" "nlb" {
 
-  for_each = { for index, record in local.settings.nlb_target_groups : index => record }
+  for_each = { for index, record in local.settings.nlb.target_groups : index => record }
 
   port     = each.value.port
   protocol = each.value.tg_protocol
@@ -25,7 +25,7 @@ resource "aws_lb_target_group" "nlb" {
 
 resource "aws_lb_target_group" "alb" {
 
-  for_each = { for index, record in local.settings.alb_target_groups : index => record }
+  for_each = { for index, record in local.settings.alb.target_groups : index => record }
 
 
 

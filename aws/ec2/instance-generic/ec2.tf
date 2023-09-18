@@ -13,7 +13,7 @@ module "ec2-instance-base" {
   name = "${local.settings.tags_common.service_name}-${local.settings.tags_common.service_resource}-${local.settings.tags_common.environment}-${local.settings.tags_common.purpose}-${lower(random_id.detail.hex)}"
 
   ami                    = random_id.detail.keepers.ami_id
-  instance_type          = local.settings.instance_type
+  instance_type          = local.settings.instance.type
   monitoring             = true
   vpc_security_group_ids = [aws_security_group.instance.id]
   subnet_id              = data.aws_subnets.filter.ids[0]

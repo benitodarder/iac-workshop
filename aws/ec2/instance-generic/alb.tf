@@ -1,10 +1,10 @@
 resource "aws_lb" "alb" {
 
-  count = length(local.settings.alb_listeners) > 0 ? 1 : 0
+  count = length(local.settings.alb.listeners) > 0 ? 1 : 0
 
   load_balancer_type = "application"
   internal           = false
-  subnets            = local.settings.alb_subnets
+  subnets            = local.settings.alb.subnets
   security_groups    = [aws_security_group.alb.id]
 
   enable_cross_zone_load_balancing = true
@@ -22,7 +22,7 @@ resource "aws_lb" "alb" {
 
 resource "aws_lb_listener_rule" "alb" {
 
-  for_each = { for index, record in local.settings.alb_listener_rules : index => record }
+  for_each = { for index, record in local.settings.alb.listener_rules : index => record }
 
   listener_arn = aws_lb_listener.alb[each.value.listener_index].arn
   priority     = each.value.priority
@@ -51,7 +51,7 @@ resource "aws_lb_listener_rule" "alb" {
 
 resource "aws_lb_target_group_attachment" "alb" {
 
-  for_each = { for index, record in local.settings.alb_target_groups : index => record }
+  for_each = { for index, record in local.settings.alb.target_groups : index => record }
 
   target_group_arn = aws_lb_target_group.alb[each.key].arn
   target_id        = module.ec2-instance-base.id
@@ -60,7 +60,7 @@ resource "aws_lb_target_group_attachment" "alb" {
 
 resource "aws_lb_listener" "alb" {
 
-  for_each = { for index, record in local.settings.alb_listeners : index => record }
+  for_each = { for index, record in local.settings.alb.listeners : index => record }
 
 
   load_balancer_arn = aws_lb.alb[0].arn

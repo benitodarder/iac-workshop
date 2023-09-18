@@ -3,7 +3,7 @@ resource "aws_security_group" "nlb" {
   vpc_id = local.settings.vpc_id
 
   dynamic "ingress" {
-    for_each = { for index, record in local.settings.nlb_configurations : index => record }
+    for_each = { for index, record in local.settings.nlb.configurations : index => record }
     content {
       from_port   = ingress.value.port
       to_port     = ingress.value.port

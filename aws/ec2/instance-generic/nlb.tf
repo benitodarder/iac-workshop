@@ -1,10 +1,10 @@
 resource "aws_lb" "nlb" {
 
-  count = length(local.settings.nlb_configurations) > 0 ? 1 : 0
+  count = length(local.settings.nlb.configurations) > 0 ? 1 : 0
 
   load_balancer_type = "network"
   internal           = false
-  subnets            = local.settings.nlb_subnets
+  subnets            = local.settings.nlb.subnets
   security_groups    = [aws_security_group.nlb.id]
 
   enable_cross_zone_load_balancing = true
@@ -21,7 +21,7 @@ resource "aws_lb" "nlb" {
 
 resource "aws_lb_listener" "nlb" {
 
-  for_each = { for index, record in local.settings.nlb_configurations : index => record }
+  for_each = { for index, record in local.settings.nlb.configurations : index => record }
 
   load_balancer_arn = aws_lb.nlb[0].arn
 
@@ -36,7 +36,7 @@ resource "aws_lb_listener" "nlb" {
 
 resource "aws_lb_target_group_attachment" "nlb" {
 
-  for_each = { for index, record in local.settings.nlb_target_groups : index => record }
+  for_each = { for index, record in local.settings.nlb.target_groups : index => record }
 
   target_group_arn = aws_lb_target_group.nlb[each.key].arn
   target_id        = module.ec2-instance-base.id

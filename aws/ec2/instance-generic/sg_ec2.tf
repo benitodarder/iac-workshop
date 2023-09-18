@@ -4,7 +4,7 @@ resource "aws_security_group" "instance" {
 
 
   dynamic "ingress" {
-    for_each = { for index, record in local.settings.nlb_target_groups : index => record }
+    for_each = { for index, record in local.settings.nlb.target_groups : index => record }
     content {
       from_port       = ingress.value.port
       to_port         = ingress.value.port
@@ -15,7 +15,7 @@ resource "aws_security_group" "instance" {
   }
 
   dynamic "ingress" {
-    for_each = { for index, record in local.settings.instance_security_groups : index => record }
+    for_each = { for index, record in local.settings.instance.security_groups : index => record }
     content {
       from_port       = ingress.value.from_port
       to_port         = ingress.value.to_port
@@ -28,7 +28,7 @@ resource "aws_security_group" "instance" {
   }
 
   dynamic "ingress" {
-    for_each = { for index, record in local.settings.alb_target_groups : index => record }
+    for_each = { for index, record in local.settings.alb.target_groups : index => record }
     content {
       from_port       = ingress.value.port
       to_port         = ingress.value.port
