@@ -1,4 +1,4 @@
-# iac-worshop / AWS
+# iac-worshop / aws
 
 Simple AWS IAC recipes... Probably of questionable utility...
 

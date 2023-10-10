@@ -1,0 +1,16 @@
+cluster:
+  endpoint: # Cluster endpoint. String.
+  self_certificate: # Boolean.
+  tags:
+    categories:
+      - name: # Category name. String. First.
+        tags: # List of tag names. String. [] for empty string.
+      ...
+      - name: # Category name. String. n-th.
+        tags:# List of tag names. String. [] for empty string.
+      
+## Tags. Categories and tags value must be defined in cluster tags. ##
+tags_map: []
+  # category_01: value_01
+  # ...
+  # category_n: value_n
