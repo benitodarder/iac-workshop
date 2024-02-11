@@ -3,23 +3,24 @@
 Simple AWS IAC recipes... Probably of questionable utility...
 
 * ec2
-  - ami-base
-  - autoscalingroup-generic
-    + Autoscaling group with an ALB for service and a NLB for maintenance
-  - instance-elb
-    + Public instance on a private subnet exposed through a classic load balancer
-  - instance-generic
-    + Public instance on a private subnet exposed through a network load balancer, or using an application load balancer
+    - ami-base
+    - autoscalingroup-generic
+        + Autoscaling group with an ALB for service and a NLB for maintenance
+    - instance-elb
+        + Public instance on a private subnet exposed through a classic load balancer
+    - instance-generic
+        + Public instance on a private subnet exposed through a network load balancer, or using an application load balancer
 * lambda
-  - lambda-and-layer shows how to add packages to a lambda using layers
+    - lambda-and-layer shows how to add packages to a lambda using layers
 * rds
-  -  public-rds-credentials-from-secret : Not quite a bright idea expose an RDS to internet...
+    - public-rds-credentials-from-secret : Not quite a bright idea expose an RDS to internet...
 * s3
-  -  terraform-backend-from-config-file
-  -  terraform-backend-from-workspace
-  -  bucket-backendless
-  -  bucket-from-config-file
-  -  bucket-from-workspace
+    - tfstate-backend-from-config-file
+    - tfstate-backend-from-workspace
+    - bucket-backendless
+    - bucket-from-config-file
+    - bucket-from-workspace
+    - bucket-static-web
 
 ### Building from configuration files.
   
